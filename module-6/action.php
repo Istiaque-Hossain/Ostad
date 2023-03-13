@@ -52,7 +52,7 @@ $_SESSION[$name] = $_POST["name"];
         }
 
         $myfile = fopen("user.csv", "w") or die("Unable to open file!");
-        $txt = "NAME:{$_POST["name"]} <br>, EMAIL: {$_POST["email"]} <br>, PASSWORD: {$_POST["pass"]} <br>, IMAGE FILE NAME: {$upadetd_photo}";
+        $txt = "{$_POST["name"]} <br>, {$_POST["email"]} <br>, {$_POST["pass"]} <br>, {$upadetd_photo}";
         // echo $txt;
         fwrite($myfile, $txt);
         fclose($myfile);
@@ -93,14 +93,39 @@ $_SESSION[$name] = $_POST["name"];
                 echo "<br><br> ........... Data From user.csv .................<br>";
                 $file = fopen("user.csv", "r");
 
+                $myArray = array();
                 while (!feof($file))
                 {
-                    print_r(fgetcsv($file));
+                    $arrayElements = fgetcsv($file);
+                    $myArray = array_merge($myArray, $arrayElements);
                 }
 
-                fclose($file);
-                ?>
 
+                // fclose($file);
+                ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Image File Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><?php print_r($myArray[0])  ?></th>
+                            <td><?php print_r($myArray[1]) ?></td>
+                            <td><?php print_r($myArray[2]) ?></td>
+                            <td><?php print_r($myArray[3]) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                // print_r($myArray[0]);
+                fclose($file);
+
+                ?>
             </div>
         </div>
     </div>
