@@ -1,0 +1,66 @@
+Solutions:
+________________________________________
+
+
+a. Write a query to select all columns and rows from the employees table.
+Ans: SELECT * FROM employees;
+Berief: * will show all results from the table employees.
+
+b. Write a query to select only the name and salary columns of all employees with a salary greater than 50000.
+Ans: SELECT name, salary
+ FROM employees
+WHERE salary > 50000;
+Berief: name, salary will be shown  from table employees and the condition is salary > 50000
+
+c. Write a query to calculate the average salary of all employees.
+Ans: SELECT AVG(salary)
+FROM employees;
+Berief: AVG() function will give us the average of salary
+
+d. Write a query to count the number of employees who work in the "Marketing" department.
+Ans: SELECT COUNT(*) AS Num_of_Employee 
+ FROM employees 
+   WHERE department_id = 
+       (SELECT id 
+          FROM departments 
+           WHERE name = 'Marketing');
+Berief: (SELECT id FROM departments WHERE name = 'Marketing') is a sub sql which give the id of "Marketing" department. the we will do another sql which is the first one.
+
+e. Write a query to update the salary column of the employee with an id of 1001 to 60000.
+Ans: UPDATE employees
+SET salary = 60000
+WHERE id = 1001;
+Berief: UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+
+f. Write a query to delete all employees whose salary is less than 30000.
+Ans: DELETE FROM employees WHERE salary < 30000;
+Berief: DELETE FROM table_name WHERE condition;
+
+________________________________________
+
+ 
+Use the departments table to answer the following questions:
+a. Write a query to select all columns and rows from the departments table.
+Ans: SELECT * FROM departments;
+Berief: * will show all results from the table departments.
+
+b. Write a query to select only the name and manager columns of the "Finance" department.
+Ans: SELECT name, manager
+ FROM departments
+WHERE name = 'Finance';
+Berief: name, manager will be shown from table departments and the condition is name = 'Finance
+
+c. Write a query to calculate the total number of employees in each department.
+Ans: 
+SELECT departments.name, COUNT(*) AS NumberOfEmployees 
+FROM employees
+JOIN departments ON employees.department_id = departments.id
+GROUP BY departments.name;
+Berief: it will join 2 tables employees & departments if employees.department_id = departments.id. after that we grouped that result based on name of department table. using  COUNT(*) function we can find the total number of employees in each department.
+
+d. Write a query to insert a new department called "Research" with a manager named "John Doe".
+Ans:
+INSERT INTO departments (name, manager)
+VALUES ('Research', ' John Doe');
+Berief: INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+
