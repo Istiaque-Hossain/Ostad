@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "istiaque_newstoday");
+$db = mysqli_connect("localhost", "root", "", "newstoday");
 
 ?>
 <header class="market-header header">
@@ -14,9 +14,18 @@ $db = mysqli_connect("localhost", "root", "", "istiaque_newstoday");
             </a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
+
+
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">HOME</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.php">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php">Contact</a>
+                    </li>
+
                 </ul>
                 <form class="form-inline" action="search.php" method="GET">
                     <input class="form-control mr-sm-2" type="text" placeholder="How may I help?" name="s_text">

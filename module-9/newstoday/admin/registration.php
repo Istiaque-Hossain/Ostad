@@ -6,7 +6,6 @@ include "inc/connection.php";
 session_start();
 if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
     header('Location:dashboard.php');
-    exit();
 }
 
 ?>
@@ -73,8 +72,6 @@ if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
                             $user_email = $_POST["user_email"];
                             $user_pass = $_POST["user_pass"];
                             $re_pass = $_POST["re_pass"];
-                            
-                            
 
                             $sql_count = "SELECT u_email FROM users WHERE u_email= '$user_email'";
                             $result_count = mysqli_query($db, $sql_count);
@@ -117,7 +114,6 @@ if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
                                         <?php
                                         } else {
                                             echo " DB Error . . ";
-                                            echo die(mysqli_error($db));
                                         }
                                     } else {
                                         ?>

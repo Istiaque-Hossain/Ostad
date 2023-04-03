@@ -281,7 +281,6 @@
                                                             // header("Location:users.php");
                                                         } else {
                                                             echo " DB Error : " . mysqli_error($db);
-                                                            
                                                         }
                                                     } else {
                                                         echo " Wrong Image Input . . .";
@@ -323,7 +322,7 @@
                                                         <?php
                                                         // header("Location:users.php");
                                                     } else {
-                                                         echo " DB Error : " . mysqli_error($db);
+                                                        echo " DB Error : " . mysqli_error($db);
                                                     }
                                                 }
                                                 // ====================== img,pass (both update) ========================

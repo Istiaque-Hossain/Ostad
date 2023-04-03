@@ -1,8 +1,7 @@
 <?php
-ob_start();
 include "inc/connection.php";
-// include "inc/functions.php";
-
+include "inc/functions.php";
+ob_start();
 session_start();
 if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
     header('Location:dashboard.php');
@@ -99,10 +98,6 @@ if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
                                 if ($_SESSION['u_email'] == $your_email && $u_pass == $encryPass) {
                                     $_SESSION['log'] = 1;
                                     header('location:dashboard.php');
-                                    exit();
-                                    // header('location:index.php');
-                                    // echo "ok";
-                                
                                 } else if ($_SESSION['u_email'] != $your_email || $u_pass != $encryPass) {
                         ?>
                                     <div class="alert alert-danger mt-4" role="alert">
@@ -110,16 +105,10 @@ if (!empty($_SESSION['u_email']) && $_SESSION['log'] == 1) {
                                     </div>
                         <?php
                                 } else {
-                                     header('location:index.php');
-                                    
-                                     
-                                     
+                                    header('location:index.php');
                                 }
                             }
                             // echo " lolllllll2";
-                        }
-                        else {
-                            
                         }
                         ?>
 

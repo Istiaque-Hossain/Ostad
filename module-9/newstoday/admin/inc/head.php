@@ -1,8 +1,7 @@
 <?php
-ob_start();
-
 include "connection.php";
 include "functions.php";
+ob_start();
 session_start();
 if (empty($_SESSION['u_email'])) {
     header('Location:index.php');

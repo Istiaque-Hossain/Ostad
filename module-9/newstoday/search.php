@@ -25,7 +25,8 @@ include "inc/head.php";
 
                                 if (isset($_GET['searchbtn'])) {
                                     $s_text = $_GET['s_text'];
-                                    
+                                    echo "hello";
+
 
                                     $sql2 = "SELECT * FROM posts WHERE p_title LIKE '%$s_text%' OR p_desc LIKE '%$s_text%'";
                                     $result = mysqli_query($db, $sql2);

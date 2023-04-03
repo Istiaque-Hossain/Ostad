@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect("localhost", "istiaque_root", "newstoday2021", "istiaque_newstoday");
+$db = mysqli_connect("localhost", "root", "", "newstoday");
 session_start();
 
 ?>
