@@ -1,0 +1,21 @@
+.sidebar a {
+  /* color: #5e5e5e; */
+  display: contents;
+}
+.footer a {
+  /* color: #5e5e5e; */
+  display: contents;
+}
+#cta {
+  width: 100%;
+
+  background-image: url(../images/custom/banner/banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* .modal-open {
+  padding: 0px !important;
+  padding-right: 17px !important;
+  overflow-y: scroll;
+} */

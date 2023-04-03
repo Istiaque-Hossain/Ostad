@@ -1,0 +1,38 @@
+@media (min-width: 769px) {
+  .sign-in {
+    height: 100vh;
+    background-color: #e9e5e4;
+    /* padding-top: 2rem !important;
+        padding-bottom: 2rem !important; */
+    display: flex;
+    align-items: center;
+  }
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 900px !important;
+  }
+  .signin-content {
+    padding-top: 50px;
+    padding-bottom: 42px;
+  }
+  .signin-form {
+    padding-top: 3rem !important;
+  }
+
+  /* =========================================================================================================== */
+  .signup {
+    height: 100vh;
+    background-color: #e9e5e4;
+    /* padding-top: 2rem !important;
+        padding-bottom: 2rem !important; */
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+  .signup-content {
+    padding: 60px 0;
+  }
+}
