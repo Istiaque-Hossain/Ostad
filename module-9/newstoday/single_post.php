@@ -11,7 +11,8 @@ ob_start();
 
         <!-- ============================= for showing a certai div ================================= -->
 
-        <?php if ($_GET['div_id'] == 1) { ?>
+        <?php if ($_GET['div_id'] == 1)
+        { ?>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
             <script>
@@ -33,13 +34,15 @@ ob_start();
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 
                         <?php
-                        if (isset($_GET['post_id'])) {
+                        if (isset($_GET['post_id']))
+                        {
                             $postID = $_GET['post_id'];
 
                             $sql2 = "SELECT * FROM posts WHERE p_id='$postID'";
                             $result = mysqli_query($db, $sql2);
                             // $count = 0;
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
                                 $p_id = $row['p_id'];
                                 $p_title = $row["p_title"];
                                 $p_img = $row["p_img"];
@@ -66,7 +69,8 @@ ob_start();
                                                     <?php
                                                     $cat = "SELECT c_name FROM category WHERE c_id='$p_cat'";
                                                     $result1 = mysqli_query($db, $cat);
-                                                    while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                    while ($row1 = mysqli_fetch_assoc($result1))
+                                                    {
                                                         $cat_name = $row1['c_name'];
                                                     }
 
@@ -81,7 +85,8 @@ ob_start();
                                                 <?php
                                                 $cat = "SELECT c_name FROM category WHERE c_id='$p_cat'";
                                                 $result1 = mysqli_query($db, $cat);
-                                                while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                while ($row1 = mysqli_fetch_assoc($result1))
+                                                {
                                                     $cat_name = $row1['c_name'];
                                                 }
 
@@ -99,7 +104,8 @@ ob_start();
                                                     <?php
                                                     $user = "SELECT u_name FROM users WHERE u_id='$p_author'";
                                                     $result1 = mysqli_query($db, $user);
-                                                    while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                    while ($row1 = mysqli_fetch_assoc($result1))
+                                                    {
                                                         $user_name = $row1['u_name'];
                                                     }
                                                     echo 'by ' . $user_name;
@@ -165,7 +171,8 @@ ob_start();
                                                 <?php
                                                 $user = "SELECT u_img FROM users WHERE u_id='$p_author'";
                                                 $result1 = mysqli_query($db, $user);
-                                                while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                while ($row1 = mysqli_fetch_assoc($result1))
+                                                {
                                                     $user_img = $row1['u_img'];
                                                 }
 
@@ -179,7 +186,8 @@ ob_start();
                                                         <?php
                                                         $user = "SELECT u_name FROM users WHERE u_id='$p_author'";
                                                         $result1 = mysqli_query($db, $user);
-                                                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                        while ($row1 = mysqli_fetch_assoc($result1))
+                                                        {
                                                             $user_name = $row1['u_name'];
                                                         }
                                                         echo 'by ' . $user_name;
@@ -190,10 +198,12 @@ ob_start();
                                                     <?php
                                                     $user = "SELECT u_role FROM users WHERE u_id='$p_author'";
                                                     $result1 = mysqli_query($db, $user);
-                                                    while ($row1 = mysqli_fetch_assoc($result1)) {
+                                                    while ($row1 = mysqli_fetch_assoc($result1))
+                                                    {
                                                         $u_role = $row1['u_role'];
                                                     }
-                                                    if ($u_role == 2) {
+                                                    if ($u_role == 2)
+                                                    {
 
                                                         echo 'He is the '  ?>
                                                         <a href="#0" style=" color:#ed5b3b !important;">
@@ -202,14 +212,16 @@ ob_start();
                                                     <?php echo ' of Our News portal';
                                                     }
 
-                                                    if ($u_role == 1) {
+                                                    if ($u_role == 1)
+                                                    {
                                                         echo 'He is the '  ?>
                                                         <a href="#0" style=" color:#F9CA27 !important;">
                                                             EDITOR
                                                         </a>
                                                     <?php echo ' of Our News portal';
                                                     }
-                                                    if ($u_role == 0) {
+                                                    if ($u_role == 0)
+                                                    {
                                                         echo 'He is the '  ?>
                                                         <a href="#0">
                                                             SUBSCRIBER
@@ -239,202 +251,10 @@ ob_start();
                                     <!-- ============================= LIKE POST ================================= -->
 
 
-                                    <div class="custombox clearfix">
-                                        <h4 class="small-title">You may also like</h4>
-                                        <div class="row">
-                                            <?php
-                                            $sql2 = "SELECT * FROM posts ORDER BY p_id DESC";
-                                            $result = mysqli_query($db, $sql2);
-                                            // $count = 0;
-                                            $count = 1;
 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                $p_id = $row['p_id'];
-                                                $p_title = $row["p_title"];
-                                                $p_img = $row["p_img"];
-                                                $p_author = $row["p_author"];
-                                                $p_desc = $row["p_desc"];
-                                                $p_date = $row["p_date"];
-
-                                                $p_date = date('d-m-Y _ g:i A', strtotime($p_date));
-
-                                                $p_cat = $row["p_cat"];
-                                                $p_cmnt = $row["p_cmnt"];
-                                                $p_status = $row["p_status"];
-                                                if ($p_id != $postID && $count < 3) {
-                                            ?>
-                                                    <div class="col-lg-6">
-                                                        <div class="blog-box">
-                                                            <div class="post-media">
-                                                                <a href="single_post.php?post_id=<?php echo $p_id ?>" title="">
-                                                                    <img src="admin/image/posts/<?php echo $p_img ?>" alt="" class="img-fluid">
-                                                                    <div class="hovereffect">
-                                                                        <span class=""></span>
-                                                                    </div><!-- end hover -->
-                                                                </a>
-                                                            </div><!-- end media -->
-                                                            <div class="blog-meta">
-                                                                <h4><a href="single_post.php?post_id=<?php echo $p_id ?>" title="">
-                                                                        <?php echo $p_title ?>
-                                                                    </a>
-                                                                </h4>
-                                                                <small><a href="#0" title="">
-                                                                        <?php
-                                                                        $cat = "SELECT c_name FROM category WHERE c_id='$p_cat'";
-                                                                        $result1 = mysqli_query($db, $cat);
-                                                                        while ($row1 = mysqli_fetch_assoc($result1)) {
-                                                                            $cat_name = $row1['c_name'];
-                                                                        }
-
-                                                                        echo $cat_name;
-
-                                                                        ?></a></small>
-                                                                <small><a href="#0" title=""><?php echo $p_date ?></a></small>
-                                                            </div><!-- end meta -->
-                                                        </div><!-- end blog-box -->
-                                                    </div><!-- end col -->
-                                            <?php
-                                                    $count++;
-                                                }
-                                            }
-                                            ?>
-
-
-
-                                        </div><!-- end row -->
-                                    </div><!-- end custom-box -->
                                     <div id="what"></div>
 
                                     <hr class="invis1">
-
-                                    <!-- ============================= COMMENT ================================= -->
-
-
-                                    <div class="custombox clearfix">
-                                        <?php
-                                        $sql_cmnt1 = "SELECT * FROM comment WHERE cmnt_post='$postID' ORDER BY cmnt_date DESC";
-                                        $result_cmnt1 = mysqli_query($db, $sql_cmnt1);
-                                        $count_cmnt = mysqli_num_rows($result_cmnt1);
-                                        ?>
-                                        <h4 class="small-title"><?php echo $count_cmnt ?> Comments</h4>
-
-
-                                        <div class="row">
-
-                                            <div class="col-lg-12">
-                                                <div class="comments-list">
-                                                    <?php
-                                                    $sql_cmnt = "SELECT * FROM comment WHERE cmnt_post='$postID' ORDER BY cmnt_date DESC";
-                                                    $result_cmnt = mysqli_query($db, $sql_cmnt);
-
-                                                    ?>
-
-
-                                                    <?php
-
-                                                    while ($row_cmnt = mysqli_fetch_assoc($result_cmnt)) {
-                                                        $cmnt_id = $row_cmnt['cmnt_id'];
-                                                        $cmnt_author = $row_cmnt["cmnt_author"];
-                                                        $cmnt_desc = $row_cmnt["cmnt_desc"];
-                                                        $cmnt_date = $row_cmnt["cmnt_date"];
-                                                        $cmnt_date = date('d-m-Y ___ g:i A', strtotime($cmnt_date));
-
-                                                        $cmnt_post = $row_cmnt["cmnt_post"];
-
-
-                                                    ?>
-
-                                                        <div class="media">
-                                                            <a class="media-left" href="#">
-                                                                <?php
-                                                                $user = "SELECT u_img FROM users WHERE u_id='$cmnt_author'";
-                                                                $result1 = mysqli_query($db, $user);
-                                                                while ($row1 = mysqli_fetch_assoc($result1)) {
-                                                                    $user_img = $row1['u_img'];
-                                                                }
-
-                                                                ?>
-                                                                <img src="admin/image/users/<?php echo $user_img; ?>" alt="" class="rounded-circle">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <h4 class="media-heading user_name">
-                                                                    <?php
-                                                                    $user = "SELECT u_name FROM users WHERE u_id='$cmnt_author'";
-                                                                    $result1 = mysqli_query($db, $user);
-                                                                    while ($row1 = mysqli_fetch_assoc($result1)) {
-                                                                        $user_name = $row1['u_name'];
-                                                                    }
-                                                                    echo 'by ' . $user_name;
-                                                                    ?>
-                                                                    <small><?php echo $cmnt_date; ?></small>
-                                                                </h4>
-                                                                <p><?php
-                                                                    echo $cmnt_desc;
-                                                                    ?></p>
-                                                                <!-- <a href="#" class="btn btn-primary btn-sm">Reply</a> -->
-                                                            </div>
-
-
-
-                                                        </div>
-                                                    <?php
-
-                                                    }
-
-                                                    ?>
-
-                                                </div>
-                                            </div><!-- end col -->
-                                        </div><!-- end row -->
-                                    </div><!-- end custom-box -->
-
-                                    <hr class="invis1">
-                                    <?php
-                                    if (empty($_SESSION['u_email'])) {
-                                    ?>
-                                        <div class="custombox clearfix">
-                                            <h4 class="small-title">You have to Log In to Reply</h4>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <form class="form-wrapper">
-                                                        <button type="reset" class="btn btn-primary"> <a href="index.php" target="_blank" class=" text-white"> Log In</a></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php
-                                    } else {
-                                    ?>
-
-
-                                        <div class="custombox clearfix">
-                                            <h4 class="small-title">Leave a Reply</h4>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <form class="form-wrapper" method="POST" enctype="multipart/form-data" action="config/action.php?post_id=<?php echo $postID; ?>">
-
-                                                        <textarea class="form-control" placeholder="Your comment" name="cmnt_desc"></textarea>
-
-                                                        <button type="submit" class="btn btn-primary" name="add_cmnt">Submit Comment</button>
-
-
-
-                                                    </form>
-
-
-
-
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    <?php
-                                    }
-                                    ?>
 
 
                                 </div><!-- end page-wrapper -->
