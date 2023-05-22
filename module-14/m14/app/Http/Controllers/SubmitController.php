@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class SubmitController extends Controller
 {
-    public function submit()
+    public function submit(Request $request)
     {
+        $name = $request->input('name');
         $data = [
 
             "success" => true,
