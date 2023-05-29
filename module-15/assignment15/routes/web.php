@@ -5,6 +5,8 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +38,29 @@ Route::get('/home', function ()
     return Redirect::to('/dashboard', 302);
 });
 
-// Route::middleware([])->group(function ()
-// {
-//     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
-//     Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
-// });
 
 Route::middleware(['auth.custom'])->group(function ()
 {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
 });
+
+
+
+// Route for displaying all products
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+// Route for displaying the form to create a new product
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+// Route for storing a newly created product
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+// Route for displaying the form to edit an existing product
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+// Route for updating a specified product
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+
+// Route for deleting a specified product
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
