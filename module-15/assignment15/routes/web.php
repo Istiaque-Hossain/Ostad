@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
+
 
 
 /*
@@ -64,3 +66,12 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 
 // Route for deleting a specified product
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+
+Route::get('/contact', function ()
+{
+    return view('contact');
+});
+
+Route::post('/contact', ContactController::class);
