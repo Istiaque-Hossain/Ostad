@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,10 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-// Route::get('/', function ()
-// {
-//     return view('welcome');
-// });
+Route::get('/', function ()
+{
+    return view('welcome');
+});
 
 // Route::resource('/register', RegisterController::class);
 // Route::get('/users', function ()
@@ -32,4 +34,16 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/home', function ()
 {
     return Redirect::to('/dashboard', 302);
+});
+
+// Route::middleware([])->group(function ()
+// {
+//     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+//     Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
+// });
+
+Route::middleware(['auth.custom'])->group(function ()
+{
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
 });
