@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function ()
+// {
+//     return view('welcome');
+// });
+
+// Route::resource('/register', RegisterController::class);
+// Route::get('/users', function ()
+// {
+//     return view('registration');
+// });
+
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/home', function ()
+{
+    return Redirect::to('/dashboard', 302);
 });
