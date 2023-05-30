@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SettingsController;
 
 
 
@@ -75,3 +76,5 @@ Route::get('/contact', function ()
 });
 
 Route::post('/contact', ContactController::class);
+
+Route::resource('/post', PostController::class);
