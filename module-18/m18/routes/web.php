@@ -24,3 +24,5 @@ Route::get('/post', [PostController::class, 'index']);
 Route::get('/cat', [CategoryController::class, 'index']);
 Route::get('/allpost', [PostController::class, 'getAllPostWithCat']);
 Route::get('/allpostcount/{id}', [PostController::class, 'getCountPost']);
+Route::get('/posts/{id}/delete', [PostController::class, 'deltPost']);
+Route::get('/posts/trash', [PostController::class, 'trashPost']);
