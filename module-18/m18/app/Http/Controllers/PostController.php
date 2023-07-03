@@ -59,4 +59,10 @@ class PostController extends Controller
         $post = Post::onlyTrashed()->get();
         return $post;
     }
+
+    function getPostsByCategoryId($categoryId)
+    {
+        $posts = Post::where('category_id', $categoryId)->get();
+        return $posts;
+    }
 }

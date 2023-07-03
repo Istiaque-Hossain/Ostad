@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Models\Category;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,6 @@ Route::get('/allpost', [PostController::class, 'getAllPostWithCat']);
 Route::get('/allpostcount/{id}', [PostController::class, 'getCountPost']);
 Route::get('/posts/{id}/delete', [PostController::class, 'deltPost']);
 Route::get('/posts/trash', [PostController::class, 'trashPost']);
+Route::get('/categories/{id}/posts', [PostController::class, 'getPostsByCategoryId']);
+Route::get('/categories/{id}/latestposts', [CategoryController::class, 'latestPostByCategory']);
+Route::get('/categories/latestposts', [CategoryController::class, 'allPostByCategories']);

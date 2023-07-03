@@ -11,4 +11,17 @@ class CategoryController extends Controller
     {
         return  Category::find(1)->getPost;
     }
+
+    function latestPostByCategory($categoryId)
+    {
+        $category = Category::find($categoryId);
+        $latestPost = $category->latestPost;
+        return $latestPost;
+    }
+
+    function allPostByCategories()
+    {
+        $categories = Category::all();
+        return view('all-post-by-cat', compact('categories'));
+    }
 }
