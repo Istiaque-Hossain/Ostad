@@ -20,3 +20,4 @@ use App\Http\Controllers\Admin\PostController;
 // });
 
 Route::get('/', [PostController::class, 'index']);
+Route::get('/post/{id}', [PostController::class, 'show']);
