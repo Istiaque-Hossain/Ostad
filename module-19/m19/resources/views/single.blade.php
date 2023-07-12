@@ -26,14 +26,16 @@
                         <h3 class="mb-5">Comments</h3>
 
                         <ul class="comment-list" id="comment-list">
-                            @php
+                            {{-- @php
                                 $i = 0;
-                            @endphp
+                            @endphp --}}
                             @foreach ($post->post_comments as $comments)
                                 <li class="comment">
                                     <div class="vcard bio">
                                         {{-- <img src="images/person_2.jpg" alt="Image" /> --}}
-                                        {{ ++$i }}
+                                        <span style="font-size: .7rem; font-weight: 600;">
+                                            {{ $comments->created_at }}</span>
+
                                     </div>
                                     <div class="comment-body">
                                         <h3>{{ $comments->name }}</h3>

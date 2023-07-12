@@ -31,6 +31,7 @@
                                 <span class="meta d-inline-block mb-3">{{ $post->created_at }} <span
                                         class="mx-2">by</span> <a href="#">Admin</a></span>
                                 <p>{{ $post->desc }}</p>
+                                <a href="{{ url('/post/' . $post->id) }}">Read More . .</a>
                             </div>
                         </div>
                     </div>

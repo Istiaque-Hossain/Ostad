@@ -25,6 +25,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 const comment = response.data;
                 const newCommentElement = document.createElement("li");
 
+                const newCommentDiv1 = document.createElement("div");
+                newCommentDiv1.classList.add("vcard", "bio");
+
+                const now = new Date();
+                // const formattedTime = now.toLocaleString("en-US", {
+                //     format: "YYYY-MM-DD HH:mm:ss",
+                // });
+
+                newCommentDiv1.textContent = now;
+                newCommentElement.appendChild(newCommentDiv1);
+
                 const newCommentDiv = document.createElement("div");
                 newCommentDiv.classList.add("comment-body");
 
