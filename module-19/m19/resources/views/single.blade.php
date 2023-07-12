@@ -50,18 +50,19 @@
 
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="">
+                            <form action="{{ route('comment.store', ['id' => $post->id]) }}" method="POST" class="">
+                                @csrf
                                 <div class="form-group">
                                     <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name" />
+                                    <input name="name" type="text" class="form-control" id="name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email" />
+                                    <input name="email" type="email" class="form-control" id="email" />
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="cmnt" id="message" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white" />
@@ -73,4 +74,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // app.js or any JavaScript file
+        import axios from 'axios';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentForm = document.getElementById('comment-form');
+            const commentsList = document.getElementById('comments-list');
+
+            commentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(commentForm);
+                const commentText = formData.get('text');
+                const blogId = commentForm.getAttribute('action').split('/').pop();
+
+                axios.post(`/blogs/${blogId}/comments`, {
+                        text: commentText
+                    })
+                    .then(response => {
+                        const comment = response.data;
+                        const newCommentElement = document.createElement('li');
+                        newCommentElement.textContent = comment.text;
+                        commentsList.appendChild(newCommentElement);
+                        commentForm.reset();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+        });
+    </script>
 @endsection

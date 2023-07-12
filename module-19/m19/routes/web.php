@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ use App\Http\Controllers\Admin\PostController;
 
 Route::get('/', [PostController::class, 'index']);
 Route::get('/post/{id}', [PostController::class, 'show']);
+
+Route::post('/post/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
