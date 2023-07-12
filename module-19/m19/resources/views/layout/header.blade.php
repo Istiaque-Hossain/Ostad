@@ -22,6 +22,10 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">

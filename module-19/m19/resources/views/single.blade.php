@@ -25,7 +25,7 @@
                     <div class="pt-5">
                         <h3 class="mb-5">Comments</h3>
 
-                        <ul class="comment-list">
+                        <ul class="comment-list" id="comment-list">
                             @php
                                 $i = 0;
                             @endphp
@@ -50,7 +50,8 @@
 
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
-                            <form action="{{ route('comment.store', ['id' => $post->id]) }}" method="POST" class="">
+                            <form action="{{ route('comment.store', ['id' => $post->id]) }}" method="POST" class=""
+                                id="comment-form">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Name *</label>
@@ -74,36 +75,60 @@
             </div>
         </div>
     </div>
+    {{-- <script>
+        // const axios = require("axios");
+        // import axios from "axios";
 
-    <script>
-        // app.js or any JavaScript file
-        import axios from 'axios';
+        document.addEventListener("DOMContentLoaded", function() {
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const commentForm = document.getElementById('comment-form');
-            const commentsList = document.getElementById('comments-list');
+            const commentForm = document.getElementById("comment-form");
+            const commentsList = document.getElementById("comment-list");
 
-            commentForm.addEventListener('submit', function(event) {
+            commentForm.addEventListener("submit", function(event) {
                 event.preventDefault();
+                // console.log('hiiiiiiiiiiiiiiiiii');
 
                 const formData = new FormData(commentForm);
-                const commentText = formData.get('text');
-                const blogId = commentForm.getAttribute('action').split('/').pop();
+                const commentName = formData.get("name");
+                const commentEmail = formData.get("email");
+                const commentCmnt = formData.get("cmnt");
+                const blogId = commentForm.getAttribute("action").split("/")[4];
 
-                axios.post(`/blogs/${blogId}/comments`, {
-                        text: commentText
+                console.log(blogId);
+                axios
+                    .post('{{ route('comment.store', ['id' => $post->id]) }}', {
+                        name: commentName,
+                        email: commentEmail,
+                        cmnt: commentCmnt,
                     })
-                    .then(response => {
+                    .then((response) => {
                         const comment = response.data;
-                        const newCommentElement = document.createElement('li');
-                        newCommentElement.textContent = comment.text;
+                        const newCommentElement = document.createElement("li");
+
+                        const newCommentDiv = document.createElement("div");
+                        newCommentDiv.classList.add("comment-body");
+
+                        const h3Element = document.createElement("h3");
+                        h3Element.textContent = comment.name;
+                        newCommentDiv.appendChild(h3Element);
+
+                        const h6Element = document.createElement("h6");
+                        h6Element.textContent = comment.email;
+                        newCommentDiv.appendChild(h6Element);
+
+                        const pElement = document.createElement("p");
+                        pElement.textContent = comment.cmnt;
+                        newCommentDiv.appendChild(pElement);
+
+                        newCommentElement.appendChild(newCommentDiv);
+
                         commentsList.appendChild(newCommentElement);
                         commentForm.reset();
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         console.error(error);
                     });
             });
         });
-    </script>
+    </script> --}}
 @endsection
