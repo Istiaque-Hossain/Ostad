@@ -28,12 +28,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 const newCommentDiv1 = document.createElement("div");
                 newCommentDiv1.classList.add("vcard", "bio");
 
+                // Get current date and time
                 const now = new Date();
-                // const formattedTime = now.toLocaleString("en-US", {
-                //     format: "YYYY-MM-DD HH:mm:ss",
-                // });
 
-                newCommentDiv1.textContent = now;
+                // Get the components of the date and time
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, "0");
+                const day = String(now.getDate()).padStart(2, "0");
+                const hours = String(now.getHours()).padStart(2, "0");
+                const minutes = String(now.getMinutes()).padStart(2, "0");
+                const seconds = String(now.getSeconds()).padStart(2, "0");
+
+                // Format the date and time
+                const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+                // console.log(formattedDateTime);
+
+                newCommentDiv1.textContent = formattedDateTime;
                 newCommentElement.appendChild(newCommentDiv1);
 
                 const newCommentDiv = document.createElement("div");
@@ -59,5 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch((error) => {
                 console.error(error);
             });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dateConvert = document.getElementsByClassName("bio");
+    Array.from(dateConvert).forEach((element) => {
+        // utc = element.innerText.toLocaleString();
+        // element.innerText = utc;
+        const utc = element.innerText;
+        const localDateTime = new Date(utc).toLocaleString();
+        element.innerText = localDateTime;
     });
 });

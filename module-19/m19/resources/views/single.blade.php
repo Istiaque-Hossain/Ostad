@@ -33,8 +33,14 @@
                                 <li class="comment">
                                     <div class="vcard bio">
                                         {{-- <img src="images/person_2.jpg" alt="Image" /> --}}
-                                        <span style="font-size: .7rem; font-weight: 600;">
-                                            {{ $comments->created_at }}</span>
+
+                                        {{-- @php
+                                            $clientTimezone = date_default_timezone_get();
+                                            echo $clientTimezone;
+                                            echo convertDateTime($clientTimezone, $comments->created_at);
+                                        @endphp --}}
+                                        {{ $comments->created_at }}
+
 
                                     </div>
                                     <div class="comment-body">

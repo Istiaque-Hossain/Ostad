@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,11 +37,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
+
+
+
         // return Post::find($id)->comments; //show coments of that id
         $post = Post::with('post_comments')->find($id);
-        return view('single', compact('post'));
+
+        return view('single', compact('post'))->with('request', $request);
     }
 
     /**

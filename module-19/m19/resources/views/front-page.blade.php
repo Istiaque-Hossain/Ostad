@@ -27,7 +27,7 @@
                             <h1 class="text-center"><span class="badge text-white bg-secondary">{{ ++$i }}</span>
                             </h1>
                             <div class="post-entry-1-contents">
-                                <h2><a href="single.html">{{ $post->title }}</a></h2>
+                                <h2><a href="{{ url('/post/' . $post->id) }}">{{ $post->title }}</a></h2>
                                 <span class="meta d-inline-block mb-3">{{ $post->created_at }} <span
                                         class="mx-2">by</span> <a href="#">Admin</a></span>
                                 <p>{{ $post->desc }}</p>

@@ -44,7 +44,7 @@
                 <div class="row align-items-center position-relative">
                     <div class="col-12">
                         <div class="site-logo text-center">
-                            <a href="index.html" class="font-weight-bold">
+                            <a href="{{ url('/') }}" class="font-weight-bold">
                                 <img src="{{ url('assets/images/logo.png') }}" alt="Image" class="img-fluid" />
                             </a>
                         </div>
