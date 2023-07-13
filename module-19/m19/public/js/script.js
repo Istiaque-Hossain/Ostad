@@ -31,18 +31,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Get current date and time
                 const now = new Date();
 
-                // Get the components of the date and time
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, "0");
-                const day = String(now.getDate()).padStart(2, "0");
-                const hours = String(now.getHours()).padStart(2, "0");
-                const minutes = String(now.getMinutes()).padStart(2, "0");
-                const seconds = String(now.getSeconds()).padStart(2, "0");
+                // // Get the components of the date and time
+                // const year = now.getFullYear();
+                // const month = String(now.getMonth() + 1).padStart(2, "0");
+                // const day = String(now.getDate()).padStart(2, "0");
+                // const hours = String(now.getHours()).padStart(2, "0");
+                // const minutes = String(now.getMinutes()).padStart(2, "0");
+                // const seconds = String(now.getSeconds()).padStart(2, "0");
 
-                // Format the date and time
-                const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                // // Format the date and time
+                // const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
                 // console.log(formattedDateTime);
+
+                const formattedDateTime = now.toLocaleString(undefined, {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true,
+                });
 
                 newCommentDiv1.textContent = formattedDateTime;
                 newCommentElement.appendChild(newCommentDiv1);
@@ -78,8 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
     Array.from(dateConvert).forEach((element) => {
         // utc = element.innerText.toLocaleString();
         // element.innerText = utc;
-        const utc = element.innerText;
-        const localDateTime = new Date(utc).toLocaleString();
-        element.innerText = localDateTime;
+        // const utc = element.innerText;
+        // const localDateTime = new Date(utc).toLocaleString();
+        // element.innerText = localDateTime;
+
+        const utcDate = new Date(element.innerText);
+        const offset = utcDate.getTimezoneOffset();
+        const localDate = new Date(utcDate.getTime() - offset * 60 * 1000);
+
+        // Format the local date and time without milliseconds
+        const formattedDateTime = localDate.toLocaleString(undefined, {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+        });
+
+        element.innerText = formattedDateTime;
+        element.style.display = "block";
     });
 });

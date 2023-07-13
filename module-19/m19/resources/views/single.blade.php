@@ -3,7 +3,7 @@
 @section('main-container')
     <div class="ftco-blocks-cover-1">
         <div class="site-section-cover overlay" data-stellar-background-ratio="0.5"
-            style="background-image: url('images/hero_1.jpg')">
+            style="background-image: url('{{ url('assets/images/hero_1.jpg') }}')">
             <div class="container">
                 <div class="row align-items-center justify-content-center text-center">
                     <div class="col-md-7">
@@ -23,7 +23,7 @@
                     <p class="lead">{{ $post->desc }}</p>
 
                     <div class="pt-5">
-                        <h3 class="mb-5">Comments</h3>
+                        <h3 class="mb-5 font-weight-bold">Comments :</h3>
 
                         <ul class="comment-list" id="comment-list">
                             {{-- @php
@@ -31,7 +31,7 @@
                             @endphp --}}
                             @foreach ($post->post_comments as $comments)
                                 <li class="comment">
-                                    <div class="vcard bio">
+                                    <div class="vcard bio" style="display: none">
                                         {{-- <img src="images/person_2.jpg" alt="Image" /> --}}
 
                                         {{-- @php
