@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,8 +34,11 @@ class AuthController extends Controller
             'user_id' => $user->id
         ];
         $token =  JWT::encode($payload, $key, 'HS256');
+        // $key = '123';
+        // $token = JWT::decode($token, new Key($key, 'HS256'));
 
-        return response()->json(['token' => $token])->header('Authorization', 'Bearer ' . $token);
+        return response()->json(['token' => $token]);
+        // return response()->json(['token' => $token])->header('Authorization', 'Bearer ' . $token);
     }
 
     public function register(Request $request)
