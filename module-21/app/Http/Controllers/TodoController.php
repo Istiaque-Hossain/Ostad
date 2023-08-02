@@ -24,10 +24,13 @@ class TodoController extends Controller
         $user_id = $request->user_id;
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            // 'description' => 'required|string|max:1000',
         ]);
 
+        // dd($data);
+
         $data['user_id'] = $user_id;
+        // return $data;
         $todo = Todo::create($data);
         return response()->json($todo, 201);
     }
@@ -35,7 +38,9 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $user_id = $request->user_id;
+        // return $user_id . $id;
         $todo = Todo::where('user_id', $user_id)->find($id);
+        // return $todo;
 
         if (!$todo)
         {
@@ -44,7 +49,7 @@ class TodoController extends Controller
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            // 'description' => 'required|string|max:1000',
         ]);
 
         $todo->update($data);
