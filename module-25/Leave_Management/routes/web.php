@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LeaveRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('welcome');
+});
+
+Route::get('/login', [AuthController::class, 'LoginPage']);
+Route::post('/login', [AuthController::class, 'Login']);
+Route::get('/logout', [AuthController::class, 'Logout']);
+
+Route::group(['middleware' => 'auth'], function ()
+{
+    Route::get('/leave-requests', [LeaveRequestController::class, 'Index']);
+    Route::get('/leave-requests/create', [LeaveRequestController::class, 'Create']);
+    Route::post('/leave-requests', [LeaveRequestController::class, 'Store']);
+    Route::get('/leave-requests/{leaveRequest}', [LeaveRequestController::class, 'Show']);
+    Route::get('/leave-requests/{leaveRequest}/edit', [LeaveRequestController::class, 'Edit']);
+    Route::put('/leave-requests/{leaveRequest}', [LeaveRequestController::class, 'Update']);
+    Route::delete('/leave-requests/{leaveRequest}', [LeaveRequestController::class, 'Destroy']);
 });
